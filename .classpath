@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="CSAGordon/src"/>
+	<classpathentry kind="lib" path="CSAGordon/lib/commons-collections4-4.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="CSAGordon/lib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="CSAGordon/lib/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="CSAGordon/lib/poi-examples-3.17.jar"/>
+	<classpathentry kind="lib" path="CSAGordon/lib/poi-excelant-3.17.jar"/>
+	<classpathentry kind="lib" path="CSAGordon/lib/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="CSAGordon/lib/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="CSAGordon/lib/poi-scratchpad-3.17.jar"/>
+	<classpathentry kind="lib" path="CSAGordon/lib/xmlbeans.jar"/>
+	<classpathentry kind="lib" path="SummerMathSeatingProgram.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="CSAGordon/bin"/>
+</classpath>

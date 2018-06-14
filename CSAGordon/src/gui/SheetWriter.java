@@ -1,7 +1,7 @@
 package gui;
 /**
  * A class to write and save Excel files
- * @author Skylar Chan
+ * @author Kasra Torshizi and Skylar Chan
  */
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

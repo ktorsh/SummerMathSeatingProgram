@@ -1,7 +1,7 @@
 package garbo;
 /**
  * Represents the scene where the user drops in the Excel file to be read.
- * @author Skylar Chan
+ * @author Kasra Torshizi and Skylar Chan
  */
 import java.io.File;
 import java.io.IOException;

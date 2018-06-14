@@ -3,7 +3,7 @@ import util.SheetReader;
 import javafx.scene.control.*;
 /**
  * Represents the scene where the user drops in the Excel file to be read.
- * @author Skylar Chan
+ * @author Kasra Torshiz 
  */
 import java.io.File;
 import java.io.FileNotFoundException;

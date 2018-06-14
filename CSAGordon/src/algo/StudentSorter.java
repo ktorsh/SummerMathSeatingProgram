@@ -48,7 +48,7 @@ public class StudentSorter {
 			System.out.println(temp);
 		}
 	}
-	private void updateStats(){
+	private void updateStats(){//after a placement stats need to be updated
 		if (numStudents != 0){
 			percClemFem = (double) numClemFem / numStudents;
 			percClemMen = (double) numClemMen / numStudents;
@@ -56,7 +56,7 @@ public class StudentSorter {
 			percNonMen = (double) numNonMen / numStudents;
 		}
 	}
-	private void calculateStats(){
+	private void calculateStats(){//initial calculation of stats
 		
 		for (int i = 0; i < sess.getNumStudents(); i++){
 			if (sess.getStudent(i).getGender() == SeatGender.FEMALE && sess.getStudent(i).getMiddleSchool() == SeatSchool.RCMS){
@@ -83,10 +83,10 @@ public class StudentSorter {
 		System.out.println(percNonMen);
 	}
 	
-	public void makeGirls(){
+	public void makeGirls(){//sorts students in tables with girls being the prime element; get a table outline 
 		// int tempNumStudents = numStudents;
 		
-		for (int i = 0; i<sess.getNumTables(); i++){
+		for (int i = 0; i<sess.getNumTables(); i++){ //parse through each table
 			System.out.println(percClemFem + percNonFem);
 			if ((percClemFem + percNonFem)>0.75){ //if there is 75% or more girls: make all girls
 				int n; 
@@ -96,19 +96,19 @@ public class StudentSorter {
 				else {
 					n=3;
 				}
-				int girlIrit = n;
-				if (numClemFem + numNonFem < n){
+				int girlIrit = n; //number of girls to have in a table 
+				if (numClemFem + numNonFem < n){ //if there isnt enough girls, just dump all firls into one table 
 					girlIrit = numClemFem + numNonFem;
 				}
 				for (int j=0;j<girlIrit;j++){
-					if (percClemFem*Math.random() > percNonFem*Math.random()){
+					if (percClemFem*Math.random() > percNonFem*Math.random()){ //place clemente fem
 						sess.setGender(i, j, SeatGender.FEMALE);
 						sess.setSchool(i, j, SeatSchool.RCMS);
 						numClemFem--;
 						numStudents--;
 						updateStats();
 					}
-					else{
+					else{//place non clemente fem 
 						sess.setGender(i, j, SeatGender.FEMALE);
 						sess.setSchool(i, j, SeatSchool.NONRCMS);
 						numNonFem--;
@@ -116,7 +116,7 @@ public class StudentSorter {
 						updateStats();
 					}
 				}
-				for (int k=0;k<n-girlIrit;k++){
+				for (int k=0;k<n-girlIrit;k++){//place the boys into the table 
 					if ((percClemMen*Math.random() > percNonMen*Math.random())){
 						sess.setGender(i, n-1, SeatGender.MALE);
 						sess.setSchool(i, n-1, SeatSchool.RCMS);	
@@ -134,7 +134,7 @@ public class StudentSorter {
 				}
 				
 			}
-			else if ((percClemFem + percNonFem)>0.5 || (numClemFem + numNonFem)==3){ //if there is more than 50% of girls: make n-1 girls
+			else if ((percClemFem + percNonFem)>0.5 || (numClemFem + numNonFem)==3){ //if there is more than 50% of girls: make n-1 girls or if there are 3 girls 
 				int tempnumClem = 0; 
 				int n; 
 				if (sess.getTableSize(i) == 4){
@@ -143,9 +143,9 @@ public class StudentSorter {
 				else {
 					n=3;
 				}
-				int girlIrit = n-1;
+				int girlIrit = n-1; //num of girls 
 				for (int j = 0;j<girlIrit;j++){
-					if (percClemFem*Math.random() > percNonFem*Math.random() && tempnumClem<=2){
+					if (percClemFem*Math.random() > percNonFem*Math.random() && tempnumClem<=2){//ensure max of two clemente if possible 
 						sess.setGender(i, j, SeatGender.FEMALE);
 						sess.setSchool(i, j, SeatSchool.RCMS);	
 						numClemFem--; 
@@ -162,7 +162,7 @@ public class StudentSorter {
 					}
 				}
 				
-				if ((percClemMen*Math.random() > percNonMen*Math.random()) && tempnumClem<=2){
+				if ((percClemMen*Math.random() > percNonMen*Math.random()) && tempnumClem<=2){ //ensure max of two clemente if possible 
 					sess.setGender(i, n-1, SeatGender.MALE);
 					sess.setSchool(i, n-1, SeatSchool.RCMS);	
 					numClemMen--;
@@ -211,7 +211,7 @@ public class StudentSorter {
 					}
 				}
 				for (int b=0; b<n-girlIrit;b++){
-					if ((percClemMen*Math.random() > percNonMen*Math.random()) && tempnumClem <= 2){
+					if ((percClemMen*Math.random() > percNonMen*Math.random()) && tempnumClem <= 2){//ensure max of two clemente if possible 
 						sess.setGender(i, girlIrit + b, SeatGender.MALE);
 						sess.setSchool(i, girlIrit+b, SeatSchool.RCMS);	
 						numClemMen--;
@@ -239,35 +239,36 @@ public class StudentSorter {
 		Collections.shuffle(clemFem);
 		Collections.shuffle(nonMen);
 		Collections.shuffle(clemFem);
-		for (int x=0; x<Session.allDays.length;x++){
-			DaySeating seats = new DaySeating(Session.allDays[x]);
-			
+		for (int x=0; x<Session.allDays.length;x++){//go through each day 
+			DaySeating seats = new DaySeating(Session.allDays[x]);//the exact students in the table on that day 
+			//create arrayLists that can have their members removed 
 			ArrayList<Student> tempclemMen = new ArrayList<Student>(clemMen);
 			ArrayList<Student> tempclemFem = new ArrayList<Student>(clemFem);
 			ArrayList<Student> tempnonMen = new ArrayList<Student>(nonMen);
 			ArrayList<Student> tempnonFem = new ArrayList<Student>(nonFem);
+			//randomize students in order they are parsed
 			Collections.shuffle(tempclemMen);
 			Collections.shuffle(tempclemFem);
 			Collections.shuffle(tempnonMen);
 			Collections.shuffle(tempclemFem);
-			for (int y=0; y<sess.getNumTables(); y++){
+			for (int y=0; y<sess.getNumTables(); y++){// go through each table 
 				Table t = new Table(sess.getTableSize(y));
 				int curStudents=0;
 				for (int z=0; z<sess.getTableSize(y); z++){
 					if (sess.getGender(y,z) == SeatGender.MALE && sess.getSchool(y,z) == SeatSchool.RCMS){
 						int index =0;
-						for (int a=0; a<tempclemMen.size(); a++){
+						for (int a=0; a<tempclemMen.size(); a++){//checks if there memebers in which each student in the array has sat with before 
 							boolean hasSat = false;
 							for (int b=0; b<curStudents;b++){
 								if (t.get(b).shareTable(tempclemMen.get(a))){
 									hasSat = true;
 								}
 							}
-							if (!hasSat){
+							if (!hasSat){ //set the index to be pivioted; if none found it is just the first element of the array  
 								index = a;
 							}
 						}
-						t.set(z,tempclemMen.remove(index));
+						t.set(z,tempclemMen.remove(index));//remove table from student array and put in table 
 						curStudents++;
 						//t.set(z, tempclemMen.remove((int) Math.random()*tempclemMen.size()));
 					}
@@ -333,7 +334,7 @@ public class StudentSorter {
 			sess.addDaySeating(Session.allDays[x], seats);
 		}
 	}
-	public void sort(){
+	public void sort(){//one overarching method with its helper methods 
 		makeTables();
 		calculateStats();
 		makeGirls();

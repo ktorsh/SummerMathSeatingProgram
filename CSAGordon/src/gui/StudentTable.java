@@ -1,6 +1,6 @@
 package gui;
 /**The table where sorted students are viewed before saving.
- * @author Skylar Chan
+ * @author Kasra Torshizi and Skylar Chan
  */
 import java.util.ArrayList;
 

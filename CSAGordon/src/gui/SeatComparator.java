@@ -4,7 +4,7 @@ import java.util.Comparator;
 /**
  * Sorts strings of format XY, where X is a numeric char and Y is an alphabetical char.
  * X takes precedence before Y in ordering. Otherwise normal ordering rules apply.
- * @author Skylar Chan
+ * @author Kasra Torshizi
  */
 public class SeatComparator implements Comparator<String> {
 
